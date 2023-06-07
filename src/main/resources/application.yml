@@ -1,0 +1,7 @@
+spring:
+  application:
+  name: recommendation_backend
+server:
+  port: 7529
+  servlet:
+    context-path: /api
