@@ -1,6 +1,14 @@
 spring:
   application:
-  name: recommendation_backend
+    name: recommendation_backend
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/recommendation
+    username: root
+    password: 123456
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 server:
   port: 7529
   servlet:
