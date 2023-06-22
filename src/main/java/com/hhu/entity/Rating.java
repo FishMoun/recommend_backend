@@ -1,40 +1,22 @@
 package com.hhu.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@ApiModel(description = "用户登录的实体类")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Rating {
-	private Integer user_id;
-	private Integer movie_id;
+	@ApiModelProperty(value = "用户Id",example = "123",required = true)
+	private Integer userId;
+	@ApiModelProperty(value = "电影Id",example = "456",required = true)
+	private Integer movieId;
+	@ApiModelProperty(value = "电影评分(1~5的整数)",example = "1",required = true)
 	private int rating;
-	private int timestamp;
 
-	public int getUser_id() {
-		return this.user_id;
-	}
 
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
-	}
-
-	public int getMovie_id() {
-		return this.movie_id;
-	}
-
-	public void setMovie_id(int movie_id) {
-		this.movie_id = movie_id;
-	}
-
-	public int getRating() {
-		return this.rating;
-	}
-
-	public void setRating(int rating) {
-		this.rating = rating;
-	}
-
-	public int getTimestamp() {
-		return this.timestamp;
-	}
-
-	public void setTimestamp(int timestamp) {
-		this.timestamp = timestamp;
-	}
 }

@@ -46,10 +46,9 @@ public class ImportRatings {
 
 		String[] ra = line.split("::");
 		Rating rating = new Rating();
-		rating.setUser_id(Integer.parseInt(ra[0]));
-		rating.setMovie_id(Integer.parseInt(ra[1]));
+//		rating.setUser_id(Integer.parseInt(ra[0]));
+//		rating.setMovie_id(Integer.parseInt(ra[1]));
 		rating.setRating(Integer.parseInt(ra[2]));
-		rating.setTimestamp(Integer.parseInt(ra[3]));
 		return rating;
 	}
 
@@ -66,8 +65,8 @@ public class ImportRatings {
 			ps = conn.prepareStatement(sql);
 			int count = 0;
 			for (Rating rating : ratings) {
-				ps.setInt(1, rating.getUser_id());
-				ps.setInt(2, rating.getMovie_id());
+//				ps.setInt(1, rating.getUser_id());
+//				ps.setInt(2, rating.getMovie_id());
 				ps.setInt(3, rating.getRating());
 				ps.addBatch();
 				++count;

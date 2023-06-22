@@ -27,9 +27,9 @@ public class User {
     private String gender;
     @ApiModelProperty(value = "年龄",example = "18")
     private int age;
-    @ApiModelProperty(value = "职业",example = "教育")
+    @ApiModelProperty(value = "职业",example = "其他，教育，艺术家，行政，大学生，客户服务，医疗，管理，农民，家庭主妇，中小学生，律师，程序员，退休，市场营销，科学家，个体户，工程师，工匠，失业，作家")
     private String occupation;
-    @ApiModelProperty(value = "喜好",example = "摄影")
+    @ApiModelProperty(value = "喜好(多个爱好用逗号隔开，字符串形式)",example = "喜剧,科幻")
     private String likes;
 
 }

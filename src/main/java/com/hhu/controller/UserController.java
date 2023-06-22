@@ -24,9 +24,6 @@ import java.util.Map;
 @RestController
 public class UserController {
 
-
-
-
     @Resource
     UserService userService;
     @ApiOperation(value = "用户登录接口")

@@ -5,7 +5,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/recommendation
     username: root
-    password: 123456
+    password: HKixb5DMbZCkx2Ht
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -13,4 +13,4 @@ server:
   port: 7529
   servlet:
     context-path: /api
-filepath: D:/Data/Image/IMDBPoster/poster/
+filepath: www/wwwroot/recommend_data/poster/
