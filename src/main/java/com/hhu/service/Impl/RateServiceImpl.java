@@ -7,13 +7,14 @@ import com.hhu.mapper.RatingMapper;
 import com.hhu.service.RateService;
 import com.hhu.utils.BaseResponse;
 import com.hhu.utils.ResultUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
 @Service
 public class RateServiceImpl implements RateService {
-    @Resource
+    @Autowired
     private RatingMapper ratingMapper;
     @Override
     public BaseResponse<Rating> rate(Rating rating) {
