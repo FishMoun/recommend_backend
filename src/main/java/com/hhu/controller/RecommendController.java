@@ -9,9 +9,11 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.apache.mahout.cf.taste.common.TasteException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 @Api(tags = "推荐模块",description = "推荐高分电影、推荐相似口味电影")
 @RestController
@@ -24,7 +26,7 @@ public class RecommendController {
     @ApiOperation(value = "基于相似度实现推荐的接口")
     @ApiResponses({@ApiResponse(responseCode = "200",description = "ok"),@ApiResponse(responseCode = "201",description = "该用户没有评价过电影，随机推荐！"),@ApiResponse(responseCode = "400",description = "出错！")})
     @PostMapping("/recommend/{userId}")
-    public BaseResponse<MovieInfo []> recommend(@ApiParam(value= "用户Id",required = true)  @PathVariable int userId){
+    public BaseResponse<MovieInfo []> recommend(@ApiParam(value= "用户Id",required = true)  @PathVariable int userId) throws TasteException, IOException {
 
 
         return recommendService.recommendByObject(userId);

@@ -3,6 +3,7 @@ package com.hhu.controller;
 
 import com.hhu.entity.LoginUser;
 import com.hhu.entity.MovieInfo;
+import com.hhu.entity.RatedMovie;
 import com.hhu.entity.Rating;
 import com.hhu.service.RateService;
 import com.hhu.service.UserService;
@@ -37,9 +38,16 @@ public class RateController {
     @ApiOperation(value = "获取用户已评价的电影的接口")
     @ApiResponses({@ApiResponse(responseCode = "200",description = "获取成功！"),@ApiResponse(responseCode = "400",description = "获取失败请稍后重试")})
     @PostMapping("/ratedmovie/{userId}")
-    public BaseResponse<MovieInfo[]> getRatedMovie(@PathVariable Integer userId){
+    public BaseResponse<RatedMovie[]> getRatedMovie(@PathVariable Integer userId){
 
         return rateService.getRatedMovie(userId);
     }
 
+    @ApiOperation(value = "获取用户对一个电影的评分接口,未评分会返回的评分是0")
+    @ApiResponses({@ApiResponse(responseCode = "200",description = "获取成功！"),@ApiResponse(responseCode = "400",description = "获取失败请稍后重试")})
+    @PostMapping("/getrate/{userId}/{movieId}")
+    public BaseResponse<Integer> getMovieRateByUserId(@PathVariable Integer userId,@PathVariable Integer movieId){
+
+        return rateService.getMovieRateByUserId(userId,movieId);
+    }
 }

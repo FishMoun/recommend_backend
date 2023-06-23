@@ -3,10 +3,12 @@ package com.hhu.service.Impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hhu.entity.MovieInfo;
 import com.hhu.mapper.MovieMapper;
+import com.hhu.recommender.ItemBasedRecommenderService;
 import com.hhu.recommender.MyItemBasedRecommender;
 import com.hhu.service.RecommendService;
 import com.hhu.utils.BaseResponse;
 import com.hhu.utils.ResultUtils;
+import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.model.DataModel;
 import org.apache.mahout.cf.taste.recommender.ItemBasedRecommender;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -29,10 +32,13 @@ public class RecommendServiceImpl implements RecommendService {
     @Resource
     private MyItemBasedRecommender myRecommender;
 
+    @Autowired
+    private ItemBasedRecommenderService recommenderService;
 
     @Override
-    public BaseResponse<MovieInfo[]> recommendByObject(int userId) {
-        List<RecommendedItem> recommendations = myRecommender.myItemBasedRecommender(userId,5);
+    public BaseResponse<MovieInfo[]> recommendByObject(int userId) throws TasteException, IOException {
+
+        List<RecommendedItem> recommendations = recommenderService.recommendItems(userId,5);
         if(recommendations == null)
             return new BaseResponse<>(200, getRandomMovie(5), "该用户没有评价过电影，随机推荐！");
         MovieInfo[] movieInfos = new MovieInfo[5];

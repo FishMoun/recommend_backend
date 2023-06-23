@@ -26,4 +26,5 @@ public class MovieInfo {
 	private double avgRate;
 	private int rateNums;
 
+
 }

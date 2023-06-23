@@ -3,6 +3,7 @@ package com.hhu.service.Impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.hhu.entity.MovieInfo;
+import com.hhu.entity.RatedMovie;
 import com.hhu.entity.Rating;
 import com.hhu.entity.User;
 import com.hhu.mapper.MovieMapper;
@@ -59,7 +60,7 @@ public class RateServiceImpl implements RateService {
     }
 
     @Override
-    public BaseResponse<MovieInfo[]> getRatedMovie(Integer userId) {
+    public BaseResponse<RatedMovie[]> getRatedMovie(Integer userId) {
         QueryWrapper<Rating> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_id",userId);
         Rating[] ratings = ratingMapper.selectList(queryWrapper).toArray(new Rating[0]);
@@ -68,6 +69,31 @@ public class RateServiceImpl implements RateService {
             movieIds.add(ratings[i].getMovieId())  ;
         }
         MovieInfo[] movieInfos = movieMapper.selectBatchIds(movieIds).toArray(new MovieInfo[0]);
-        return ResultUtils.success(movieInfos);
+        RatedMovie[] movies = new RatedMovie[movieInfos.length];
+        for(int i = 0;i<movieInfos.length;++i){
+            movies[i] = new RatedMovie();
+            movies[i].setId(movieInfos[i].getId());
+            movies[i].setName(movieInfos[i].getName());
+            movies[i].setPublishedYear(movieInfos[i].getPublishedYear());
+            movies[i].setType(movieInfos[i].getType());
+            movies[i].setPosterUrl(movieInfos[i].getPosterUrl());
+            movies[i].setIntroduction(movieInfos[i].getIntroduction());
+            movies[i].setAvgRate(movieInfos[i].getAvgRate());
+            movies[i].setRateNums(movieInfos[i].getRateNums());
+            movies[i].setCurRate(ratings[i].getRating());
+
+        }
+        return ResultUtils.success(movies);
+    }
+
+    @Override
+    public BaseResponse<Integer> getMovieRateByUserId(Integer userId, Integer movieId) {
+        QueryWrapper<Rating> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id",userId).eq("movie_id",movieId);
+        Rating rating = ratingMapper.selectOne(queryWrapper);
+        if(rating == null)
+            return ResultUtils.success(0);
+        return ResultUtils.success(rating.getRating());
+
     }
 }
