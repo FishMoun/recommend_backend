@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public BaseResponse<LoginUser> checkLogin(String userName, String password) {
+    public BaseResponse<User> checkLogin(String userName, String password) {
         // 查询用户是否存在
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_name", userName);
@@ -30,9 +30,7 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.selectOne(queryWrapper);
         if(user == null)
             return ResultUtils.error(400,"账号或密码错误!");
-        int userId = user.getUserId();
-        LoginUser loginUser = new LoginUser(userId,userName,password);
-        return ResultUtils.success(loginUser);
+        return ResultUtils.success(user);
     }
 
     @Override

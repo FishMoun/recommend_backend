@@ -14,3 +14,4 @@ server:
   servlet:
     context-path: /api
 filepath: www/wwwroot/recommend_data/poster/
+modelpath: /www/wwwroot/recommend_data/movie_preferences.txt

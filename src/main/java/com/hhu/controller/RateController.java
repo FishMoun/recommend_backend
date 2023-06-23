@@ -2,6 +2,7 @@ package com.hhu.controller;
 
 
 import com.hhu.entity.LoginUser;
+import com.hhu.entity.MovieInfo;
 import com.hhu.entity.Rating;
 import com.hhu.service.RateService;
 import com.hhu.service.UserService;
@@ -12,6 +13,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +34,12 @@ public class RateController {
         return rateService.rate(rating);
     }
 
+    @ApiOperation(value = "获取用户已评价的电影的接口")
+    @ApiResponses({@ApiResponse(responseCode = "200",description = "获取成功！"),@ApiResponse(responseCode = "400",description = "获取失败请稍后重试")})
+    @PostMapping("/ratedmovie/{userId}")
+    public BaseResponse<MovieInfo[]> getRatedMovie(@PathVariable Integer userId){
 
+        return rateService.getRatedMovie(userId);
+    }
 
 }

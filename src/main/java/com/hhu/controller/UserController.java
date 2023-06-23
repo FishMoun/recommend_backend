@@ -29,7 +29,7 @@ public class UserController {
     @ApiOperation(value = "用户登录接口")
     @ApiResponses({@ApiResponse(responseCode = "200",description = "登录成功！"),@ApiResponse(responseCode = "400",description = "账号或密码错误！")})
     @PostMapping("/login")
-    public BaseResponse<LoginUser> login(@ApiParam(value= "用户名、密码",required = true)  @RequestBody LoginUser loginUser){
+    public BaseResponse<User> login(@ApiParam(value= "用户名、密码",required = true)  @RequestBody LoginUser loginUser){
         String userName = loginUser.getUserName();
         String password = loginUser.getPassword();
 

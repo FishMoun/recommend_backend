@@ -14,3 +14,4 @@ server:
   servlet:
     context-path: /api
 filepath: D:/Data/Image/IMDBPoster/poster/
+modelpath: D:/Data/dataset/ml-1m/movie_preferences.txt
