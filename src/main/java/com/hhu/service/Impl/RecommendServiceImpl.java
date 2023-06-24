@@ -5,6 +5,7 @@ import com.hhu.entity.MovieInfo;
 import com.hhu.mapper.MovieMapper;
 import com.hhu.recommender.ItemBasedRecommenderService;
 import com.hhu.recommender.MyItemBasedRecommender;
+import com.hhu.recommender.SVDRecommenderService;
 import com.hhu.service.RecommendService;
 import com.hhu.utils.BaseResponse;
 import com.hhu.utils.ResultUtils;
@@ -35,10 +36,12 @@ public class RecommendServiceImpl implements RecommendService {
     @Autowired
     private ItemBasedRecommenderService recommenderService;
 
+    @Autowired
+    private SVDRecommenderService svdRecommenderService;
     @Override
     public BaseResponse<MovieInfo[]> recommendByObject(int userId) throws TasteException, IOException {
 
-        List<RecommendedItem> recommendations = recommenderService.recommendItems(userId,5);
+        List<RecommendedItem> recommendations = svdRecommenderService.recommendItems(userId,5);
         if(recommendations == null)
             return new BaseResponse<>(200, getRandomMovie(5), "该用户没有评价过电影，随机推荐！");
         MovieInfo[] movieInfos = new MovieInfo[5];
