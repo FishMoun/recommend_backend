@@ -17,22 +17,31 @@ class UserServiceImplTest {
 
     @Test
     void checkLogin() {
-        String userName = "username";
-        String password = "password";
-
+        //1.登录成功
+        String userName = "aka";
+        String password = "0123456";
         // 调用 checkLogin 方法进行登录验证
-        BaseResponse<User> result = userService.checkLogin(userName, password);
-
+        BaseResponse<User> response1 = userService.checkLogin(userName, password);
         // 打印结果
-        System.out.println(result);
+        assertEquals(6041,response1.getData().getUserId());
+
+        //2.账号或密码错误
+        String userName2 = "aka";
+        String password2 = "012345";
+        // 调用 checkLogin 方法进行登录验证
+        BaseResponse<User> response2 = userService.checkLogin(userName2, password2);
+        // 打印结果
+        assertEquals(null,response2.getData());
+        assertEquals("账号或密码错误!",response2.getMessage());
+
     }
 
     @Test
     void register() {
         User user = new User();
         user.setUserName("newuser");
-        user.setPassword("newpassword");
-        user.setUserId(123);
+        user.setPassword("123");
+        user.setUserId(6042);
         user.setGender("男");
         user.setOccupation("教育");
         user.setAge(18);
@@ -47,12 +56,12 @@ class UserServiceImplTest {
     }
 
 
-    @Test
-    void importUsers() {
-        // 调用 importUsers 方法将数据加载到数据库中
-        boolean result = userService.importUsers();
-
-        // 打印结果
-        System.out.println("Import result: " + result);
-    }
+//    @Test
+//    void importUsers() {
+//        // 调用 importUsers 方法将数据加载到数据库中
+//        boolean result = userService.importUsers();
+//
+//        // 打印结果
+//        System.out.println("Import result: " + result);
+//    }
 }
