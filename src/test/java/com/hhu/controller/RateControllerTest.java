@@ -16,8 +16,8 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class RateControllerTest {
-    @Autowired
-    private MockMvc mockMvc;
+//    @Autowired
+//    private MockMvc mockMvc;
 
     @MockBean
     private RateService rateService;
