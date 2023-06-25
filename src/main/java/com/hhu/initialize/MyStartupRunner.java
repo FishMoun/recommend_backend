@@ -1,4 +1,4 @@
-package com.hhu.initialiaze;
+package com.hhu.initialize;
 
 import com.hhu.recommender.ItemBasedRecommenderService;
 import com.hhu.recommender.SVDRecommenderService;

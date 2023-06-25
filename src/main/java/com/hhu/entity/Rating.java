@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@ApiModel(description = "用户登录的实体类")
+@ApiModel(description = "评分的实体类")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

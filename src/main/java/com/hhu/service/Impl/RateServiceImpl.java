@@ -30,6 +30,8 @@ public class RateServiceImpl implements RateService {
     private MovieMapper movieMapper;
     @Value("${modelpath}")
     private  String modelpath;
+    @Value("${filepath}")
+    private String filepath;
     @Override
     public BaseResponse<Rating> rate(Rating rating) {
 
@@ -76,7 +78,7 @@ public class RateServiceImpl implements RateService {
             movies[i].setName(movieInfos[i].getName());
             movies[i].setPublishedYear(movieInfos[i].getPublishedYear());
             movies[i].setType(movieInfos[i].getType());
-            movies[i].setPosterUrl(movieInfos[i].getPosterUrl());
+            movies[i].setPosterUrl(filepath+movieInfos[i].getId()+".jpg");
             movies[i].setIntroduction(movieInfos[i].getIntroduction());
             movies[i].setAvgRate(movieInfos[i].getAvgRate());
             movies[i].setRateNums(movieInfos[i].getRateNums());
