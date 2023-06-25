@@ -3,6 +3,7 @@ package com.hhu.recommender;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
 import org.apache.mahout.cf.taste.impl.recommender.GenericItemBasedRecommender;
+import org.apache.mahout.cf.taste.impl.recommender.svd.RatingSGDFactorizer;
 import org.apache.mahout.cf.taste.impl.recommender.svd.SVDPlusPlusFactorizer;
 import org.apache.mahout.cf.taste.impl.recommender.svd.SVDRecommender;
 import org.apache.mahout.cf.taste.impl.similarity.PearsonCorrelationSimilarity;
@@ -27,9 +28,9 @@ public class SVDRecommenderService {
         DataModel model = new FileDataModel(new File(modelpath));
         
         // 创建SVD推荐器的Factorizer
-        int numFeatures = 10;
-        int numIterations = 10;
-        SVDPlusPlusFactorizer factorizer = new SVDPlusPlusFactorizer(model, numFeatures, numIterations);
+        int numFeatures = 100;
+        int numIterations = 100;
+        RatingSGDFactorizer factorizer = new RatingSGDFactorizer(model, numFeatures, numIterations);
         // 创建SVD推荐器
         recommender = new SVDRecommender(model, factorizer);
     }
